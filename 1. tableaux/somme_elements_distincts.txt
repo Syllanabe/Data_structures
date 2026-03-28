@@ -1,0 +1,65 @@
+ALGORITHM somme_elements_distincts
+
+VAR
+    ens1         : ARRAY_OF INTEGER[50];
+    ens2         : ARRAY_OF INTEGER[50];
+    distincts    : ARRAY_OF INTEGER[50];
+    n1, n2       : INTEGER;
+    nb_distincts : INTEGER;
+    somme        : INTEGER;
+    i, j         : INTEGER;
+    trouve       : BOOLEAN;
+
+BEGIN
+   
+    Read(n1);
+    FOR i FROM 0 TO n1-1 STEP 1 DO
+        Read(ens1[i]);
+    END_FOR
+
+   
+    Read(n2);
+    FOR i FROM 0 TO n2-1 STEP 1 DO
+        Read(ens2[i]);
+    END_FOR
+
+    somme        := 0;
+    nb_distincts := 0;
+
+    
+    FOR i FROM 0 TO n1-1 STEP 1 DO
+        trouve := FALSE;
+        FOR j FROM 0 TO n2-1 STEP 1 DO
+            IF ens1[i] = ens2[j] THEN
+                trouve := TRUE;
+            END_IF
+        END_FOR
+        IF trouve = FALSE THEN
+            distincts[nb_distincts] := ens1[i];
+            nb_distincts := nb_distincts + 1;
+        END_IF
+    END_FOR
+
+    
+    FOR i FROM 0 TO n2-1 STEP 1 DO
+        trouve := FALSE;
+        FOR j FROM 0 TO n1-1 STEP 1 DO
+            IF ens2[i] = ens1[j] THEN
+                trouve := TRUE;
+            END_IF
+        END_FOR
+        IF trouve = FALSE THEN
+            distincts[nb_distincts] := ens2[i];
+            nb_distincts := nb_distincts + 1;
+        END_IF
+    END_FOR
+
+    
+    FOR i FROM 0 TO nb_distincts-1 STEP 1 DO
+        somme := somme + distincts[i];
+    END_FOR
+
+    
+    Write("Éléments distincts : ", distincts);
+    Write("Somme              : ", somme);
+END

@@ -1,0 +1,56 @@
+ALGORITHM dot_product_procedure
+
+VAR
+    v1          : ARRAY_OF REAL[50];
+    v2          : ARRAY_OF REAL[50];
+    n           : INTEGER;
+    nb_couples  : INTEGER;
+    i, j        : INTEGER;
+    ps          : REAL;
+
+PROCEDURE dot_product(v1     : ARRAY_OF REAL,
+                      v2     : ARRAY_OF REAL,
+                      n      : INTEGER,
+                      VAR ps : REAL)
+VAR
+    i : INTEGER;
+BEGIN
+    ps := 0;
+    FOR i FROM 0 TO n-1 STEP 1 DO
+        ps := ps + (v1[i] * v2[i]);
+    END_FOR
+END_PROCEDURE
+
+BEGIN
+    
+    Read(nb_couples);
+
+    FOR j FROM 1 TO nb_couples STEP 1 DO
+
+      
+        Read(n);
+
+        
+        Write("Saisir v1 :");
+        FOR i FROM 0 TO n-1 STEP 1 DO
+            Read(v1[i]);
+        END_FOR
+
+       
+        Write("Saisir v2 :");
+        FOR i FROM 0 TO n-1 STEP 1 DO
+            Read(v2[i]);
+        END_FOR
+
+        
+        dot_product(v1, v2, n, ps);
+
+        
+        IF ps = 0 THEN
+            Write("Les vecteurs sont orthogonaux (ps = 0)");
+        ELSE
+            Write("Les vecteurs ne sont pas orthogonaux (ps = ", ps, ")");
+        END_IF
+
+    END_FOR
+END
