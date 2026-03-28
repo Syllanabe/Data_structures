@@ -1,0 +1,27 @@
+ALGORITHM array_struct_exp
+
+TYPE
+    Point : STRUCT
+                x : INTEGER;
+                y : INTEGER;
+            END_STRUCT
+END_TYPE
+
+VAR
+    arr : ARRAY_OF Point[10];
+    i   : INTEGER;
+
+BEGIN
+    
+    arr[0].x := 2;
+    arr[0].y := 5;
+
+    arr[1].x := 4;
+    arr[1].y := 8;
+
+    
+    FOR i FROM 0 TO 1 STEP 1 DO
+        Write("Point ", i, " : x = ", arr[i].x, ", y = ", arr[i].y);
+    END_FOR
+
+END
